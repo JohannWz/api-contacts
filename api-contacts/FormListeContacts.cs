@@ -13,19 +13,28 @@ namespace api_contacts {
     public partial class FormListeContacts : Form {
         private FluxConnexion flux;
 
-        public FormListeContacts(FluxConnexion fc) {
+        public FormListeContacts(FluxConnexion fcx) {
             InitializeComponent();
-            flux = fc;
+            flux = fcx;
         }
 
         private void FormListeContacts_Load(object sender, EventArgs e) {
             lBonjour.Text = "Bonjour " + flux.user.name + ", voici votre liste de contacts :";
 
-            Requete demandeContacts = new Requete(flux.token);
-            demandeContacts.RecupererContacts();
+            Requete demandeContacts = new Requete();
+            demandeContacts.RecupererContacts(flux.token);
 
             String json = demandeContacts.GetResult();
-            FluxContacts fc = JsonConvert.DeserializeObject<FluxContacts>(json);
+            List<Contact> lc = JsonConvert.DeserializeObject<List<Contact>>(json);
+
+            foreach (Contact c in lc) {
+                lbContacts.Items.Add(c.first_name);
+                lbContacts.Items.Add(c.last_name);
+                lbContacts.Items.Add(c.address);
+                lbContacts.Items.Add(c.phone);
+                lbContacts.Items.Add(c.favorite);
+            }
+
         }
     }
 }

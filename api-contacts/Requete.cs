@@ -14,26 +14,26 @@ namespace api_contacts {
         private HttpWebRequest httpWebRequest;
         private String result;
 
+        public Requete() {}
+
         public Requete(String e, String mdp) {
             json = "{\"email\":\"" + e + "\",\"password\":\"" + mdp + "\"}";
         }
 
-        public Requete(String t) {
-            json = "{\"token\":\"" + t + "\"}";
-        }
-
         public void SeConnecter() {
             httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nebulon.fr/api/v1/authenticate");
-            Envoyer();
-        }
-
-        public void RecupererContacts() {
-            httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nebulon.fr/api/v1/contacts");
-            Envoyer();
-        }
-
-        public void Envoyer() {
             httpWebRequest.Method = "POST";
+            EnvoyerPost();
+        }
+
+        public void RecupererContacts(String token) {
+            httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nebulon.fr/api/v1/users/contacts");
+            httpWebRequest.Method = "GET";
+            httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+            Envoyer();
+        }
+
+        public void EnvoyerPost() {
             httpWebRequest.ContentType = "application/json";
 
             StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream());
@@ -41,6 +41,10 @@ namespace api_contacts {
             streamWriter.Flush();
             streamWriter.Close();
 
+            Envoyer();
+        }
+
+        public void Envoyer() {
             HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
             result = streamReader.ReadToEnd();

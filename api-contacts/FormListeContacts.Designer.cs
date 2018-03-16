@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.lBonjour = new System.Windows.Forms.Label();
+            this.lbContacts = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lBonjour
@@ -35,11 +36,21 @@
             this.lBonjour.TabIndex = 0;
             this.lBonjour.Text = "label1";
             // 
+            // lbContacts
+            // 
+            this.lbContacts.FormattingEnabled = true;
+            this.lbContacts.Location = new System.Drawing.Point(13, 48);
+            this.lbContacts.MultiColumn = true;
+            this.lbContacts.Name = "lbContacts";
+            this.lbContacts.Size = new System.Drawing.Size(775, 381);
+            this.lbContacts.TabIndex = 1;
+            // 
             // FormListeContacts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbContacts);
             this.Controls.Add(this.lBonjour);
             this.Name = "FormListeContacts";
             this.Text = "Form1";
@@ -52,5 +63,6 @@
         #endregion
 
         private System.Windows.Forms.Label lBonjour;
+        private System.Windows.Forms.ListBox lbContacts;
     }
 }
