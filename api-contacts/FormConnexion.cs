@@ -9,22 +9,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace api_contacts {
-    public partial class FormConnexion : Form {
-        public FormConnexion() {
+namespace api_contacts
+{
+    public partial class FormConnexion : Form
+    {
+        public FormConnexion()
+        {
             InitializeComponent();
         }
 
-        private void btnConnexion_Click(object sender, EventArgs e) {
+        private void btnConnexion_Click(object sender, EventArgs e)
+        {
+            Connexion connexion = new Connexion(tbEmail.Text, tbMdp.Text);
+            Requete maRequete = new Requete();
+            maRequete.SeConnecter(connexion);
 
-            Requete maConnexion = new Requete(tbEmail.Text, tbMdp.Text);
-            maConnexion.SeConnecter();
+            String json = maRequete.GetResult();
+            FluxConnexion monFlux = JsonConvert.DeserializeObject<FluxConnexion>(json);
 
-            String json = maConnexion.GetResult();
-            FluxConnexion fc = JsonConvert.DeserializeObject<FluxConnexion>(json);
-
-            Form form = new FormListeContacts(fc);
-            form.ShowDialog(this);
+            Form monForm = new FormListeContacts(monFlux);
+            this.Hide();
+            monForm.ShowDialog();
+            this.Close();
         }
     }
 }

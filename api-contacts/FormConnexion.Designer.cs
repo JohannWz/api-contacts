@@ -1,5 +1,7 @@
-﻿namespace api_contacts {
-    partial class FormConnexion {
+﻿namespace api_contacts
+{
+    partial class FormConnexion
+    {
         /// <summary>
         /// Variable nécessaire au concepteur.
         /// </summary>
@@ -9,8 +11,10 @@
         /// Nettoyage des ressources utilisées.
         /// </summary>
         /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -54,6 +58,7 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(100, 20);
             this.tbEmail.TabIndex = 2;
+            this.tbEmail.Text = "johann.witz@viacesi.fr";
             // 
             // tbMdp
             // 
@@ -61,6 +66,7 @@
             this.tbMdp.Name = "tbMdp";
             this.tbMdp.Size = new System.Drawing.Size(100, 20);
             this.tbMdp.TabIndex = 3;
+            this.tbMdp.Text = "test";
             // 
             // btnConnexion
             // 

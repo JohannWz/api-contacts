@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace api_contacts
 {
-    public class User
+    public class FullContact: Contact
     {
-        public long id { get; set; }
-        public String name { get; set; }
         public String email { get; set; }
+        public String phone { get; set; }
     }
 }
